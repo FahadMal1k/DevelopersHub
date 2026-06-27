@@ -1,0 +1,38 @@
+{"level":"info","message":"🚀 Application starting...","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"📋 Environment: development","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"============================================================","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"🔒 SECURE WEB APPLICATION - FULLY HARDENED","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"============================================================","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ Secure Server running at: https://localhost:3000","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ JWT Login: POST /login-jwt","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ Protected JWT route: GET /dashboard-jwt","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ Vulnerable SQLI: POST /login_vulnerable (for testing)","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ Secure SQLI: POST /login_secure","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"📋 Logging to: security.log and error.log","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"============================================================","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"✅ Database initialized successfully","service":"secure-web-app","timestamp":"2026-06-27 09:57:40"}
+{"level":"info","message":"📥 GET /all-bios - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:57:57"}
+{"level":"info","message":"📄 All bios accessed - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:57:57"}
+{"level":"info","message":"📥 GET / - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:23"}
+{"level":"info","message":"📥 GET /style.css - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:23"}
+{"level":"info","message":"📥 GET /login.html - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:26"}
+{"level":"info","message":"📥 GET /style.css - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:26"}
+{"level":"info","message":"📥 POST /login-jwt - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:41"}
+{"level":"info","message":"🔑 Login attempt for username: abc - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:41"}
+{"level":"info","message":"✅ Successful JWT login: abc - Role: user - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:41"}
+{"level":"info","message":"📥 GET /dashboard.html - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:43"}
+{"level":"info","message":"📥 GET /style.css - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:44"}
+{"level":"info","message":"📥 GET /dashboard-jwt - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:44"}
+{"level":"info","message":"📊 JWT Dashboard accessed by: abc - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:44"}
+{"level":"info","message":"📥 POST /update-bio - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:52"}
+{"level":"warn","message":"🔒 Unauthorized access attempt to /update-bio - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:52"}
+{"level":"info","message":"📥 GET /login.html - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:58:52"}
+{"level":"info","message":"📥 GET /all-bios - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:03"}
+{"level":"info","message":"📄 All bios accessed - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:03"}
+{"level":"info","message":"📥 GET /login.html - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:11"}
+{"level":"info","message":"📥 GET /style.css - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:11"}
+{"level":"info","message":"📥 GET / - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:58"}
+{"level":"info","message":"📥 OPTIONS / - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:58"}
+{"level":"info","message":"📥 OPTIONS / - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:58"}
+{"level":"info","message":"📥 GET /nice%20ports%2C/Tri%6Eity.txt%2ebak - IP: ::ffff:127.0.0.1","service":"secure-web-app","timestamp":"2026-06-27 09:59:58"}
+{"level":"info","message":"🛑 Application shutting down...","service":"secure-web-app","timestamp":"2026-06-27 10:02:25"}

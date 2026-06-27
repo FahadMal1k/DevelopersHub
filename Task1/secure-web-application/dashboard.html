@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+</div>
+
+<div class="container">
+  <h2 id="welcomeMessage">Welcome, User</h2>
+  <p id="roleText">Role: user</p>
+  
+  <!-- Admin panel button - shown only for admin users (controlled by JWT) -->
+  <button id="adminButton" onclick="window.location.href='admin.html'" style="display: none;">
+    Admin Panel
+  </button>
+
+  <hr>
+
+  <!-- ========== BIO SECTION ========== -->
+  <h3>Update Your Bio</h3>
+  <input type="text" id="bioInput" placeholder="Enter your bio" style="width:90%">
+  <br><br>
+  <button onclick="updateBio()">Update Bio</button>
+  <button onclick="showAllBios()">Show All Bios</button>
+
+  <hr>
+
+  <h3>Comments</h3>
+  <input type="text" id="commentInput" placeholder="Write a comment">
+  <button onclick="addComment()">Add</button>
+  <ul id="commentsList"></ul>
+
+  <hr>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- 
+  ============================================================
+  WEEK 2: UPDATED JWT DASHBOARD SCRIPT
+  ============================================================
+  - Fetches protected user data using the JWT token.
+  - Displays username and role.
+  - Shows/hides Admin button based on role.
+  - Handles expired/invalid tokens gracefully.
+-->
+<script>
+  // =============================================
+  // 1. LOAD DASHBOARD ON PAGE START
+  // =============================================
+  window.onload = function() {
+      // Get the JWT token from localStorage (saved during login)
+      const token = localStorage.getItem('jwtToken');
+
+      // If no token, user is not logged in → redirect to login
+      if (!token) {
+          alert('🔒 No token found. Please login first.');
+          window.location.href = '/login.html';
+          return;
+      }
+
+      // Call the protected JWT endpoint
+      fetch('/dashboard-jwt', {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${token}`
+          }
+      })
+      .then(response => {
+          // If token is invalid or expired (401/403), clear storage and redirect
+          if (response.status === 401 || response.status === 403) {
+              localStorage.removeItem('jwtToken');
+              localStorage.removeItem('user');
+              alert('⏰ Session expired or invalid token. Please login again.');
+              window.location.href = '/login.html';
+              return;
+          }
+          return response.json();
+      })
+      .then(data => {
+          if (data) {
+              // Update the welcome message with the username from the JWT response
+              document.getElementById('welcomeMessage').textContent = `Welcome, ${data.username || 'User'}`;
+              document.getElementById('roleText').textContent = `Role: ${data.role || 'user'}`;
+
+              // If user is admin, show the Admin Panel button
+              if (data.role === 'admin') {
+                  document.getElementById('adminButton').style.display = 'inline-block';
+              }
+          }
+      })
+      .catch(error => {
+          console.error('❌ Dashboard load error:', error);
+          alert('❌ Failed to load dashboard. Please try again.');
+      });
+  };
+
+  // =============================================
+  // 2. LOGOUT FUNCTION (Clears JWT token)
+  // =============================================
+  function logout() {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('user');
+      window.location.href = '/login.html';
+  }
+
+  // =============================================
+  // 3. BIO & COMMENTS FUNCTIONS 
+  //    (These work with the session-based backend.
+  //     If you want them to work with JWT, we can 
+  //     extend the backend later.)
+  // =============================================
+  function updateBio() {
+      const bio = document.getElementById('bioInput').value;
+      if (!bio) {
+          alert('Please enter a bio.');
+          return;
+      }
+
+      // This calls the session-based endpoint (/update-bio)
+      // If you are logged in via session AND JWT, this works.
+      // If only JWT, you'll need to also log in via /login to get a session.
+      fetch('/update-bio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bio: bio })
+      })
+      .then(response => response.json())
+      .then(data => {
+          alert(data.message || 'Bio updated!');
+      })
+      .catch(err => {
+          alert('❌ Error updating bio. Are you logged in via session?');
+          console.error(err);
+      });
+  }
+
+  function showAllBios() {
+      // Opens the secure (XSS-protected) bios page
+      window.location.href = '/all-bios';
+  }
+
+  function addComment() {
+      const comment = document.getElementById('commentInput').value;
+      if (!comment) {
+          alert('Please enter a comment.');
+          return;
+      }
+      // Simple client-side comment display (just for demo)
+      const list = document.getElementById('commentsList');
+      const li = document.createElement('li');
+      li.textContent = comment;
+      list.appendChild(li);
+      document.getElementById('commentInput').value = '';
+  }
+</script>
+
+</body>
+</html>

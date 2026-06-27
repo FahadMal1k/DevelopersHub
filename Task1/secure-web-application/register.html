@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+  <a href="index.html">Home</a>
+</div>
+
+<div class="container">
+  <h2>Register</h2>
+
+  <input type="text" id="regUsername" placeholder="Username (alphanumeric, min 3 chars)">
+  <input type="email" id="regEmail" placeholder="Email (optional)">
+  <input type="password" id="regPassword" placeholder="Password (min 8, upper, lower, number, symbol)">
+
+  <button onclick="register()">Register</button>
+
+  <p>Already have an account? <a href="login.html">Login</a></p>
+</div>
+
+<script>
+  // =====================================================
+  // WEEK 2: REGISTER WITH VALIDATOR + BCRYPT
+  // =====================================================
+  async function register() {
+    // Get values
+    const username = document.getElementById('regUsername').value;
+    const email = document.getElementById('regEmail').value;
+    const password = document.getElementById('regPassword').value;
+
+    console.log('🔵 Register button clicked. Username:', username);
+
+    if (!username || !password) {
+      alert('⚠️ Username and password are required.');
+      return;
+    }
+
+    try {
+      console.log('🟡 Sending request to /register...');
+
+      const response = await fetch('/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, email })
+      });
+
+      const data = await response.json();
+      console.log('🟢 Server response:', data);
+
+      if (response.ok) {
+        alert('✅ Registration successful! You can now login.');
+        window.location.href = '/login.html';
+      } else {
+        alert('❌ Registration failed: ' + (data.error || data.message || 'Unknown error'));
+      }
+    } catch (error) {
+      console.error('🔴 Network error:', error);
+      alert('❌ Network error. Check if server is running.');
+    }
+  }
+</script>
+
+</body>
+</html>
